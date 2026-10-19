@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ошибка — Книжный сомелье</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1><img class="logo" src="{{ url_for('static', filename='logo.svg') }}" alt="Логотип: книга в винном бокале"> Книжный сомелье</h1>
+    </header>
+    <section class="card">
+      <h2>Дегустация не удалась</h2>
+      <p>{{ message }}</p>
+      <a class="back" href="{{ back_url }}">← Вернуться назад</a>
+    </section>
+  </main>
+</body>
+</html>

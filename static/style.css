@@ -1,0 +1,184 @@
+/* Книжный сомелье: тёплая винная тема */
+:root {
+  --wine: #5e1f2f;
+  --wine-light: #8a3b4d;
+  --cream: #faf6f1;
+  --ink: #2b2226;
+  --muted: #7a6a70;
+  --card: #ffffff;
+  --border: #e5dbd4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.55;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+h1 {
+  margin: 0;
+  color: var(--wine);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo { width: 44px; height: 44px; flex-shrink: 0; }
+h2 { margin: 0 0 8px; font-size: 1.25rem; color: var(--wine); }
+
+.tagline { color: var(--muted); margin: 6px 0 24px; }
+.taste-note {
+  font-style: italic;
+  color: var(--wine-light);
+  border-left: 3px solid var(--border);
+  padding-left: 12px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--cream);
+  resize: vertical;
+}
+
+textarea:focus, input:focus { outline: 2px solid var(--wine-light); }
+
+button {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: var(--wine);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:hover { background: var(--wine-light); }
+button:disabled { opacity: 0.6; cursor: progress; }
+
+.hint { color: var(--muted); font-size: 0.85rem; margin: 10px 0 0; }
+
+.history ul { list-style: none; margin: 0; padding: 0; }
+.history li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.history li:last-child { border-bottom: 0; }
+.history a { color: var(--ink); text-decoration: none; }
+.history a:hover { color: var(--wine); text-decoration: underline; }
+.history .date { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+
+.pick { margin-bottom: 24px; }
+.pick-head { display: flex; gap: 16px; margin-bottom: 12px; }
+.pick-head > div { min-width: 0; }
+
+.cover {
+  width: 90px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.meta { color: var(--muted); font-size: 0.9rem; margin: 4px 0 0; }
+
+.why, .vibe, .caveat { margin: 8px 0; font-size: 0.95rem; }
+.vibe { font-style: italic; color: var(--wine-light); }
+.caveat { color: var(--muted); }
+
+.links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
+.links a {
+  color: var(--wine);
+  text-decoration: none;
+  border-bottom: 1px solid var(--wine-light);
+  font-size: 0.95rem;
+}
+.links a:hover { color: var(--wine-light); }
+
+/* Прогресс подбора */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  color: var(--muted);
+}
+
+.step .bullet {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: var(--wine);
+  flex-shrink: 0;
+}
+
+.step.running { color: var(--ink); }
+.step.running .bullet {
+  border-color: var(--wine-light);
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+.step.done { color: var(--ink); }
+.step.done .bullet {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: #fff;
+}
+.step.done .bullet::before { content: "✓"; }
+
+.step.failed { color: var(--wine-light); }
+.step.failed .bullet { border-color: var(--wine-light); }
+.step.failed .bullet::before { content: "✕"; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.back-row { text-align: center; }
+.back { color: var(--wine); text-decoration: none; }
+.back:hover { text-decoration: underline; }

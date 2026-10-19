@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+books.db
+# .claude публикуется (скилл), но локальные настройки — нет
+.claude/*
+!.claude/skills/

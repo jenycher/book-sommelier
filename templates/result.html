@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подборка — Книжный сомелье</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1><img class="logo" src="{{ url_for('static', filename='logo.svg') }}" alt="Логотип: книга в винном бокале"> Ваша подборка</h1>
+      <p class="tagline">Запрос: «{{ query }}»{% if created_at %} · {{ created_at[:16] }}{% endif %}</p>
+      {% if flavor.note_ru %}
+      <p class="taste-note">Как я понял вкус: {{ flavor.note_ru }}</p>
+      {% endif %}
+    </header>
+
+    <section class="picks">
+      {% for book in picks %}
+      <article class="card pick">
+        <div class="pick-head">
+          {% if book.cover %}
+          <img class="cover" src="{{ book.cover }}" alt="Обложка: {{ book.title }}">
+          {% endif %}
+          <div>
+            <h2>{{ book.title }}</h2>
+            <p class="meta">{{ book.author }}{% if book.year %} · {{ book.year }}{% endif %} · {{ book.source }}</p>
+          </div>
+        </div>
+
+        <p class="why"><strong>Почему под запрос:</strong> {{ book.why }}</p>
+        {% if book.vibe_like %}
+        <p class="vibe"><strong>Вайб:</strong> {{ book.vibe_like }}</p>
+        {% endif %}
+        {% if book.caveat %}
+        <p class="caveat"><strong>Учтите:</strong> {{ book.caveat }}</p>
+        {% endif %}
+
+        <div class="links">
+          <a href="https://books.yandex.ru/search?query={{ (book.author ~ ' ' ~ book.title) | urlencode }}"
+             target="_blank" rel="noopener">Проверить в Яндекс Книгах</a>
+          {% if book.link %}
+          <a href="{{ book.link }}" target="_blank" rel="noopener">{{ book.source }}</a>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <p class="back-row">
+      <a href="{{ url_for('index') }}" class="back">← Ещё одну дегустацию</a>
+    </p>
+  </main>
+</body>
+</html>

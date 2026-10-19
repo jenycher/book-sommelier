@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подбираю… — Книжный сомелье</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1><img class="logo" src="{{ url_for('static', filename='logo.svg') }}" alt="Логотип: книга в винном бокале"> Книжный сомелье</h1>
+      <p class="tagline">Подбираю под ваше настроение — страница обновляется сама, закрывать не надо.</p>
+    </header>
+
+    <section class="card progress-box" id="progress-box">
+      <ol class="steps">
+        <li id="step-1" class="step pending"><span class="bullet"></span>Разбираю вкус по запросу</li>
+        <li id="step-2" class="step pending"><span class="bullet"></span>Ищу кандидатов в каталогах</li>
+        <li id="step-3" class="step pending"><span class="bullet"></span>Составляю подборку с объяснениями</li>
+      </ol>
+      <p class="hint">На бесплатном режиме модель думает дважды, по ~30–40 секунд на шаг — поэтому суммарно до полутора минут.</p>
+    </section>
+
+    <script>
+      function setStep(n, state) {
+        const el = document.getElementById("step-" + n);
+        el.classList.remove("pending", "running", "done", "failed");
+        el.classList.add(state);
+      }
+      function showError(text) {
+        document.getElementById("progress-box").innerHTML =
+          '<h2>Дегустация не удалась</h2><p>' + text + '</p>' +
+          '<a class="back" href="/">← Вернуться назад</a>';
+      }
+    </script>
+  </main>
+</body>
+</html>

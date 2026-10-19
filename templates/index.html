@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Книжный сомелье</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1><img class="logo" src="{{ url_for('static', filename='logo.svg') }}" alt="Логотип: книга в винном бокале"> Книжный сомелье</h1>
+      <p class="tagline">Расскажите, какое вам нужно настроение в книге — подберу и объясню, почему.</p>
+    </header>
+
+    <form action="{{ url_for('select') }}" method="post" class="card form" id="select-form">
+      <label for="query">Что хочется почитать?</label>
+      <textarea id="query" name="query" rows="4" required
+        placeholder="Например: навязчивый детектив с юмором, но не Кинг. Или: что-то тихое и тёплое на вечер, как у Тургенева"></textarea>
+
+      <label for="favorites">Любимые книги (необязательно)</label>
+      <input id="favorites" name="favorites" type="text"
+        placeholder="Например: Мастер и Маргарит, Довлатов, Горменгаст">
+
+      <button type="submit" id="submit-btn">Подобрать книги</button>
+      <p class="hint" id="hint" hidden>
+        Откроется страница с живым прогрессом — будет видно, на каком шаге
+        сейчас сомелье. Не закрывайте её, пока крутится анимация.
+      </p>
+    </form>
+
+    {% if history %}
+    <section class="history card">
+      <h2>История дегустаций</h2>
+      <ul>
+        {% for item in history %}
+        <li>
+          <a href="{{ url_for('history', selection_id=item.id) }}">{{ item.query }}</a>
+          <span class="date">{{ item.created_at[:16] }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </main>
+
+  <script>
+    // На бесплатном режиме подборка занимает около минуты:
+    // держим пользователя в курсе, что страница не зависла.
+    document.getElementById("select-form").addEventListener("submit", function () {
+      const button = document.getElementById("submit-btn");
+      button.disabled = true;
+      button.textContent = "Подбираю…";
+      document.getElementById("hint").hidden = false;
+    });
+  </script>
+</body>
+</html>

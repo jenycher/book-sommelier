@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Логотип: открытая книга в контуре винного бокала">
+  <!-- контур винного бокала -->
+  <path d="M14 8 L50 8 C 49 24, 44 32, 38 35.5 C 35.5 37, 28.5 37, 26 35.5 C 20 32, 15 24, 14 8 Z"
+        fill="none" stroke="#5e1f2f" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="32" y1="37" x2="32" y2="52" stroke="#5e1f2f" stroke-width="3"/>
+  <line x1="22" y1="54" x2="42" y2="54" stroke="#5e1f2f" stroke-width="4" stroke-linecap="round"/>
+  <!-- открытая книга внутри чаши -->
+  <path d="M17 21 L31 17 L31 29 L17 25 Z" fill="#5e1f2f"/>
+  <path d="M47 21 L33 17 L33 29 L47 25 Z" fill="#5e1f2f"/>
+  <line x1="31" y1="17" x2="31" y2="29" stroke="#faf6f1" stroke-width="1.6"/>
+</svg>
